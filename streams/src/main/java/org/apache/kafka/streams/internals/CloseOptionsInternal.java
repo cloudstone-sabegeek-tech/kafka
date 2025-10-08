@@ -14,10 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.kafka.common.metrics;
+package org.apache.kafka.streams.internals;
 
-/**
- * A gauge metric is an instantaneous reading of a particular value.
- */
-@FunctionalInterface
-public interface Gauge<T> extends MetricValueProvider<T> { }
+import org.apache.kafka.streams.CloseOptions;
+
+import java.time.Duration;
+import java.util.Optional;
+
+public class CloseOptionsInternal extends CloseOptions {
+
+    public CloseOptionsInternal(final CloseOptions options) {
+        super(options);
+    }
+
+    public GroupMembershipOperation operation() {
+        return operation;
+    }
+
+    public Optional<Duration> timeout() {
+        return timeout;
+    }
+}
